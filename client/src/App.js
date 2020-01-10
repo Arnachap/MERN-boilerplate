@@ -1,26 +1,23 @@
-import React, { Fragment, useEffect } from 'react';
-
-import 'materialize-css/dist/css/materialize.min.css';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import Navbar from './components/layout/Navbar';
-import Header from './components/header/Header';
+import NavBar from './components/layout/NavBar';
+import Landing from './components/landing/Landing';
+import Routes from './components/routing/Routes';
 
 const App = () => {
-  useEffect(() => {
-    // Init Materialize JS
-    M.AutoInit();
-  });
-
   return (
-    <Fragment>
-      <Navbar />
+    <Router>
+      <Fragment>
+        <NavBar />
 
-      <main>
-        <Header />
-      </main>
-    </Fragment>
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route component={Routes} />
+        </Switch>
+      </Fragment>
+    </Router>
   );
 };
 

@@ -1,60 +1,53 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 
-import M from 'materialize-css/dist/js/materialize.min.js';
+const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const Navbar = () => {
-  useEffect(() => {
-    let dropdowns = document.querySelectorAll('.dropdown-trigger');
-
-    let options = {
-      coverTrigger: false,
-      alignment: 'right',
-      constrainWidth: false
-    };
-
-    M.Dropdown.init(dropdowns, options);
-  });
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <header>
-      <ul id='guest-dropdown' class='dropdown-content grey darken-4'>
-        <li>
-          <a className='waves-effect center-align white-text'>Se connecter</a>
-        </li>
+    <Fragment>
+      <Navbar color='dark' dark light expand='md'>
+        <div className='container'>
+          <NavbarBrand href='/'>Boilerplate</NavbarBrand>
 
-        <li>
-          <a className='waves-effect center-align white-text'>S'inscrire</a>
-        </li>
-      </ul>
+          <NavbarToggler onClick={toggle} />
 
-      <div className='navbar-fixed'>
-        <nav className='grey darken-4'>
-          <div className='nav-wrapper'>
-            <div className='container'>
-              <a className='brand-logo waves-effect waves-light'>Logo</a>
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className='ml-auto' navbar>
+              <NavItem>
+                <NavLink href='#!'>Blog</NavLink>
+              </NavItem>
 
-              <ul id='nav-mobile' className='right'>
-                <li>
-                  <a className='waves-effect waves-light'>Accueil</a>
-                </li>
-                <li>
-                  <a className='waves-effect waves-light'>Blog</a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-trigger waves-effect waves-light no-autoinit'
-                    data-target='guest-dropdown'
-                  >
-                    <i className='material-icons'>person</i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav>
+                  <div className='material-icons'>person</div>
+                </DropdownToggle>
+
+                <DropdownMenu right>
+                  <DropdownItem>S'inscrire</DropdownItem>
+                  <DropdownItem>Se connecter</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </div>
+      </Navbar>
+    </Fragment>
   );
 };
 
-export default Navbar;
+export default NavBar;
