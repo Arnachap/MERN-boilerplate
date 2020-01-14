@@ -1,12 +1,11 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -22,14 +21,18 @@ const NavBar = () => {
     <Fragment>
       <Navbar color='dark' dark light expand='md'>
         <div className='container'>
-          <NavbarBrand href='/'>Boilerplate</NavbarBrand>
+          <Link to='/' className='navbar-brand'>
+            Boilerplate
+          </Link>
 
           <NavbarToggler onClick={toggle} />
 
           <Collapse isOpen={isOpen} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink href='#!'>Blog</NavLink>
+                <Link to='/blog' className='nav-link'>
+                  Blog
+                </Link>
               </NavItem>
 
               <UncontrolledDropdown nav inNavbar>
