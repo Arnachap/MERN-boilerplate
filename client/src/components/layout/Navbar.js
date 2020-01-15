@@ -42,7 +42,9 @@ const NavBar = () => {
 
                 <DropdownMenu right>
                   <DropdownItem>S'inscrire</DropdownItem>
-                  <DropdownItem>Se connecter</DropdownItem>
+                  <Link to='/login' className='dropdown-item'>
+                    Se connecter
+                  </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
